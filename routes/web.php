@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home/{name}', function($name){
-    return view('home', ['name' => $name]);
-    //return "Hola " . $name . ". ¿Cómo estás hoy?";
-})->where('name', '[A-Za-z]+');
+Route::get('/admin', 'App\Http\Controllers\AdminController@index');
+
+Route::get('/admin/heroes', 'App\Http\Controllers\HeroController@index')->name('admin.heroes');
+
+Route::get('/admin/enemies', 'App\Http\Controllers\EnemyController@index')->name('admin.enemies');
+
+Route::get('/admin/items', 'App\Http\Controllers\ItemController@index')->name('admin.items');
+
+
+
